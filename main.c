@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "prompt.h"
+#include <string.h>
 #include "command.h"
 
 /**
@@ -16,11 +16,13 @@ int main(void)
 	{
 		display_prompt();
 		if (fgets(command, sizeof(command), stdin) == NULL)
+		{
 			break;  /* Handle end of file (Ctrl+D) */
+		}
 
 		/* Remove trailing newline character */
 		command[strcspn(command, "\n")] = '\0';
 		execute_command(command);
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
