@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "builtins.h"
+
+/**
+ * execute_builtin - function for builtin commands
+ *
+ */
 
 void execute_builtin(char *command)
 {
@@ -11,10 +17,10 @@ void execute_builtin(char *command)
 	}
 	else if (strcmp(command, "env") == 0)
 	{
-		char **env;
 		extern char **environ;
+		char **env = environ;
 
-		for (env = environ; *env != NULL; env++)
+		for (; *env != NULL; env++)
 		{
 			printf("%s\n", *env);
 		}
